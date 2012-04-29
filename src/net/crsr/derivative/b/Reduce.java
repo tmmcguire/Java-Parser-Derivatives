@@ -3,7 +3,7 @@ package net.crsr.derivative.b;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Reduce extends Parser
+public class Reduce extends Fix
 {
   private Parser parser;
   private Reduction reduction;
@@ -15,13 +15,13 @@ public class Reduce extends Parser
   }
 
   @Override
-  public Parser derive(char ch)
+  public Parser innerDerive(char ch)
   {
     return new Reduce(parser.derive(ch),reduction);
   }
 
   @Override
-  public Set deriveNull()
+  public Set innerDeriveNull()
   {
     Set newSet = new HashSet();
     for (Object o : parser.deriveNull())

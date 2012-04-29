@@ -12,8 +12,10 @@ public class GraphWriter
     try
     {
       FileWriter fw = new FileWriter(file);
-      fw.write( "digraph f { " + a.toDot(new HashSet<Parser>()) + " }" );
+      final HashSet<Parser> seen = new HashSet<Parser>();
+      fw.write( "digraph f { " + a.toDot(seen) + " }" );
       fw.close();
+      System.out.println(seen.size());
     }
     catch (IOException e)
     {

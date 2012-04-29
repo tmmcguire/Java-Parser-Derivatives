@@ -3,7 +3,7 @@ package net.crsr.derivative.b;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Alternative extends Parser
+public class Alternative extends Fix
 {
   private Parser l1;
   private Parser l2;
@@ -15,13 +15,13 @@ public class Alternative extends Parser
   }
 
   @Override
-  public Parser derive(char ch)
+  public Parser innerDerive(char ch)
   {
     return new Alternative( l1.derive(ch), l2.derive(ch) );
   }
 
   @Override
-  public Set deriveNull()
+  public Set innerDeriveNull()
   {
     final Set set = new HashSet();
     set.addAll( l1.deriveNull() );

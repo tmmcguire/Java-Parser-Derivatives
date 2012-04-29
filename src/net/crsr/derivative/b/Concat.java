@@ -3,7 +3,7 @@ package net.crsr.derivative.b;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Concat extends Parser
+public class Concat extends Fix
 {
   private Parser l1;
   private Parser l2;
@@ -15,7 +15,7 @@ public class Concat extends Parser
   }
 
   @Override
-  public Parser derive(char ch)
+  public Parser innerDerive(char ch)
   {
     return new Alternative(
         new Concat( l1.derive(ch), l2 ),
@@ -24,7 +24,7 @@ public class Concat extends Parser
   }
 
   @Override
-  public Set deriveNull()
+  public Set innerDeriveNull()
   {
     Set set1   = l1.deriveNull();
     Set set2   = l2.deriveNull();

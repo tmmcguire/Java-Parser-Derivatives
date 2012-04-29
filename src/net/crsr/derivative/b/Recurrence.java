@@ -2,20 +2,20 @@ package net.crsr.derivative.b;
 
 import java.util.Set;
 
-public class Recurrence extends Parser
+public class Recurrence extends Fix
 {
     private Parser l;
     
     public void setParser(Parser l) { this.l = l; }
     
     @Override
-    public Parser derive(char ch)
+    public Parser innerDerive(char ch)
     {
       return l.derive(ch);
     }
 
     @Override
-    public Set deriveNull()
+    public Set innerDeriveNull()
     {
       return l.deriveNull();
     }
