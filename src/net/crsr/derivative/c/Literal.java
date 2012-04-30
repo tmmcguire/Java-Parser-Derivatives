@@ -15,7 +15,7 @@ public class Literal extends Parser
   @Override
   public Parser derive(char ch)
   {
-    return this.ch == ch ? new Epsilon(ch) : new Empty();
+    return this.ch == ch ? new Epsilon(ch) : Empty.e;
   }
 
   @Override

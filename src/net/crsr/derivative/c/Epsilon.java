@@ -20,7 +20,7 @@ public class Epsilon extends Parser
   @Override
   public Parser derive(char ch)
   {
-    return new Empty();
+    return Empty.e;
   }
 
   @Override

@@ -11,7 +11,7 @@ public class Delta extends Parser
   @Override
   public Parser derive(char ch)
   {
-    return new Empty();
+    return Empty.e;
   }
 
   @Override

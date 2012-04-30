@@ -9,7 +9,7 @@ public abstract class Fix extends Parser
   public abstract Parser innerDerive(char ch);
   public abstract Set innerDeriveNull();
 
-  private static PairMap<Parser,Character,Parser> derivatives = new PairMap<Parser, Character, Parser>();
+  private static PairMap<Parser,Character,Delay> derivatives = new PairMap<Parser, Character, Delay>();
 
   @Override
   public Parser derive(char ch)
@@ -18,7 +18,15 @@ public abstract class Fix extends Parser
     {
       derivatives.put(this, ch, new Delay(this, ch));
     }
-    return derivatives.get(this, ch);
+    final Delay thunk = derivatives.get(this, ch);
+    if (thunk.derivative != null)
+    {
+      return thunk.derivative;
+    }
+    else
+    {
+      return thunk;
+    }
   }
 
   @Override

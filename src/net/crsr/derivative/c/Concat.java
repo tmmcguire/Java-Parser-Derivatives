@@ -7,8 +7,20 @@ public class Concat extends Fix
 {
   private Parser l1;
   private Parser l2;
+  
+  public static Parser concat(Parser l1, Parser l2)
+  {
+    if (l1 == Empty.e || l2 == Empty.e)
+    {
+      return Empty.e;
+    }
+    else
+    {
+      return new Concat(l1,l2);
+    }
+  }
 
-  public Concat(Parser l1, Parser l2)
+  private Concat(Parser l1, Parser l2)
   {
     this.l1 = l1;
     this.l2 = l2;
@@ -17,9 +29,9 @@ public class Concat extends Fix
   @Override
   public Parser innerDerive(char ch)
   {
-    return new Alternative(
-        new Concat( l1.derive(ch), l2 ),
-        new Concat( new Delta(l1), l2.derive(ch) )
+    return Alternative.alternative(
+        Concat.concat( l1.derive(ch), l2 ),
+        Concat.concat( new Delta(l1), l2.derive(ch) )
         );
   }
 

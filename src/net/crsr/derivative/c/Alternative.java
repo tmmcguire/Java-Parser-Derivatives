@@ -7,8 +7,24 @@ public class Alternative extends Fix
 {
   private Parser l1;
   private Parser l2;
+  
+  public static Parser alternative(Parser l1, Parser l2)
+  {
+    if (l1 == Empty.e)
+    {
+      return l2;
+    }
+    else if (l2 == Empty.e)
+    {
+      return l1;
+    }
+    else
+    {
+      return new Alternative(l1,l2);
+    }
+  }
 
-  public Alternative(Parser l1, Parser l2)
+  private Alternative(Parser l1, Parser l2)
   {
     this.l1 = l1;
     this.l2 = l2;
@@ -17,7 +33,7 @@ public class Alternative extends Fix
   @Override
   public Parser innerDerive(char ch)
   {
-    return new Alternative( l1.derive(ch), l2.derive(ch) );
+    return Alternative.alternative( l1.derive(ch), l2.derive(ch) );
   }
 
   @Override
