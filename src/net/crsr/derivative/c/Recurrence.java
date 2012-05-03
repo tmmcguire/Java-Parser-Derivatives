@@ -19,6 +19,17 @@ public class Recurrence extends Fix
     {
       return l.deriveNull();
     }
+  
+  @Override
+  public Parser compact(Set seen)
+  {
+    if (! seen.contains(this))
+    {
+      seen.add(this);
+      l = l.compact(seen);
+    }
+    return this;
+  }
 
     @Override
     public String toDot(Set<Parser> seen)

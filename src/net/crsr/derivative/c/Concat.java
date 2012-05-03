@@ -50,6 +50,18 @@ public class Concat extends Fix
     }
     return result;
   }
+  
+  @Override
+  public Parser compact(Set seen)
+  {
+    if (! seen.contains(this))
+    {
+      seen.add(this);
+      l1 = l1.compact(seen);
+      l2 = l2.compact(seen);
+    }
+    return this;
+  }
 
   @Override
   public String toDot(Set seen)

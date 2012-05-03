@@ -72,6 +72,20 @@ public abstract class Fix extends Parser
       this.force();
       return this.derivative.deriveNull();
     }
+  
+  @Override
+  public Parser compact(Set seen)
+  {
+    if (! seen.contains(this))
+    {
+      seen.add(this);
+      if (derivative != null)
+      {
+        derivative = derivative.compact(seen);
+      }
+    }
+    return this;
+  }
     
     @Override
     public String toDot(Set<Parser> seen)

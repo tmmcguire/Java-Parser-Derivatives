@@ -31,18 +31,20 @@ public class Main
     a = Alternative.alternative(new Epsilon(), new Reduce(Concat.concat(S, new Literal('1')), reduction));
     S.setParser(a);
     GraphWriter.writeGraph("/tmp/S.dot", a);
-    final Parser S111 = a.derive('1').derive('1').derive('1');
+    final Parser S111 = a.compact().derive('1').compact().derive('1').compact().derive('1').compact();
     GraphWriter.writeGraph("/tmp/111.dot", S111);
     System.out.println( S111.deriveNull() );
 
     S = new Recurrence();
     a = Alternative.alternative(new Epsilon(), new Reduce(Concat.concat(S, new Literal('1')), reduction));
     S.setParser(a);
+    a = a.compact();
     GraphWriter.writeGraph("/tmp/S1.dot", a);
+    int i = 0;
     for (char ch : "1111111111".toCharArray())
     {
-      a = a.derive(ch);
-      GraphWriter.writeGraph("/tmp/111.dot", a);
+      a = a.derive(ch).compact();
+      GraphWriter.writeGraph("/tmp/S" + i++ + ".dot", a);
     }
     System.out.println( a.deriveNull() );
 
@@ -54,11 +56,12 @@ public class Main
     Parser ex  = Concat.concat(term,Concat.concat(op,term));
     Parser l   = Alternative.alternative(one,ex);
     term.setParser(l);
+    l = l.compact();
     GraphWriter.writeGraph("/tmp/l.dot", l);
-    int i = 0;
+    i = 0;
     for (char ch : "1+1*1".toCharArray())
     {
-      l = l.derive(ch);
+      l = l.derive(ch).compact();
       GraphWriter.writeGraph("/tmp/l" + (++i) + ".dot", l);
     }
     System.out.println( l.deriveNull() );

@@ -30,6 +30,17 @@ public class Reduce extends Fix
     }
     return newSet;
   }
+  
+  @Override
+  public Parser compact(Set seen)
+  {
+    if (! seen.contains(this))
+    {
+      seen.add(this);
+      parser = parser.compact(seen);
+    }
+    return this;
+  }
 
   @Override
   public String toDot(Set seen)
