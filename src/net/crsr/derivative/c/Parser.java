@@ -10,7 +10,10 @@ public abstract class Parser
   
   public Parser compact()
   {
-    return this.compact(new HashSet<Parser>());
+    final HashSet<Parser> seen = new HashSet<Parser>();
+    final Parser compacted = this.compact(seen);
+//    System.out.println("compacted: " + seen.size());
+    return compacted;
   }
   
   public Parser compact(Set<Parser> seen)

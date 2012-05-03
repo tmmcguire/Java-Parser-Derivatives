@@ -76,15 +76,15 @@ public abstract class Fix extends Parser
   @Override
   public Parser compact(Set seen)
   {
-    if (! seen.contains(this))
-    {
-      seen.add(this);
-      if (derivative != null)
-      {
-        derivative = derivative.compact(seen);
-      }
-    }
-    return this;
+    force();
+    return derivative.compact(seen);
+//    if (! seen.contains(this))
+//    {
+//      seen.add(this);
+//      force();
+//      return derivative.compact(seen);
+//    }
+//    return this;
   }
     
     @Override
