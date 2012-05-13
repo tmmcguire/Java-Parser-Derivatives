@@ -28,7 +28,7 @@ public class Main
     System.out.println();
     
     Recurrence S = new Recurrence();
-    a = Alternative.alternative(new Epsilon(), new Reduce(Concat.concat(S, new Literal('1')), reduction));
+    a = Alternative.alternative(Epsilon.epsilon(), new Reduce(Concat.concat(S, new Literal('1')), reduction));
     S.setParser(a);
     GraphWriter.writeGraph("/tmp/S.dot", a);
     final Parser S111 = a.compact().derive('1').compact().derive('1').compact().derive('1').compact();
@@ -36,7 +36,7 @@ public class Main
     System.out.println( S111.deriveNull() );
 
     S = new Recurrence();
-    a = Alternative.alternative(new Epsilon(), new Reduce(Concat.concat(S, new Literal('1')), reduction));
+    a = Alternative.alternative(Epsilon.epsilon(), new Reduce(Concat.concat(S, new Literal('1')), reduction));
     S.setParser(a);
     a = a.compact();
     GraphWriter.writeGraph("/tmp/S1.dot", a);

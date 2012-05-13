@@ -6,18 +6,40 @@ import java.util.Set;
 public class Epsilon extends Parser
 {
   private Set trees = new HashSet();
+  
+  private static Parser emptyString = new Epsilon();
+  
+  public static Parser epsilon() { return emptyString; }
+  
+  public static Parser epsilon(char ch) { return new Epsilon(ch); }
+  
+  public static Parser epsilon(Set trees)
+  {
+    if (trees.isEmpty())
+    {
+      return Empty.e;
+    }
+    else if (trees.size() == 1 && trees.contains(""))
+    {
+      return emptyString;
+    }
+    else
+    {
+      return new Epsilon(trees);
+    }
+  }
 
-  public Epsilon()
+  private Epsilon()
   {
     trees.add("");
   }
 
-  public Epsilon(char ch)
+  private Epsilon(char ch)
   {
     trees.add(ch);
   }
   
-  public Epsilon(Set trees)
+  private Epsilon(Set trees)
   {
     this.trees.addAll(trees);
   }
