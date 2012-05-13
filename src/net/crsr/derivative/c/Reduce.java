@@ -39,7 +39,22 @@ public class Reduce extends Fix
       seen.add(this);
       parser = parser.compact(seen);
     }
-    return this;
+    if (parser instanceof Reduce)
+    {
+      final Reduce subReduction = (Reduce) parser;
+      final Reduction inner = subReduction.reduction;
+      final Reduction outer = this.reduction;
+      final Reduction combination = new Reduction<Object,Object>() { @Override public Object reduce(Object t) { return outer.reduce( inner.reduce(t) ); } };
+      return new Reduce(subReduction.parser,combination);
+    }
+    else if (parser == Empty.e)
+    {
+      return Empty.e;
+    }
+    else
+    {
+      return this;
+    }
   }
 
   @Override
