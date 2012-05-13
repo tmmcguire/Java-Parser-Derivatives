@@ -59,12 +59,8 @@ public class Concat extends Fix
       seen.add(this);
       l1 = l1.compact(seen);
       l2 = l2.compact(seen);
-      if (l1 == Empty.e || l2 == Empty.e)
-      {
-        return Empty.e;
-      }
     }
-    return this;
+    return (l1 == Empty.e || l2 == Empty.e) ? Empty.e : this;
   }
 
   @Override

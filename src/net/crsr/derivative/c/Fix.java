@@ -78,13 +78,6 @@ public abstract class Fix extends Parser
   {
     force();
     return derivative.compact(seen);
-//    if (! seen.contains(this))
-//    {
-//      seen.add(this);
-//      force();
-//      return derivative.compact(seen);
-//    }
-//    return this;
   }
     
     @Override

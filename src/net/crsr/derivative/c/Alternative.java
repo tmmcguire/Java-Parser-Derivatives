@@ -53,16 +53,19 @@ public class Alternative extends Fix
       seen.add(this);
       l1 = l1.compact(seen);
       l2 = l2.compact(seen);
-      if (l1 == Empty.e)
-      {
-        return l2;
-      }
-      else if (l2 == Empty.e)
-      {
-        return l1;
-      }
     }
-    return this;
+    if (l1 == Empty.e)
+    {
+      return l2;
+    }
+    else if (l2 == Empty.e)
+    {
+      return l1;
+    }
+    else
+    {
+      return this;
+    }
   }
 
   @Override

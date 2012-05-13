@@ -24,12 +24,6 @@ public class Recurrence extends Fix
   public Parser compact(Set seen)
   {
     return l.compact(seen);
-//    if (! seen.contains(this))
-//    {
-//      seen.add(this);
-//      l = l.compact(seen);
-//    }
-//    return this;
   }
 
     @Override
