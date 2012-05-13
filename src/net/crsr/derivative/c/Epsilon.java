@@ -69,4 +69,9 @@ public class Epsilon extends Parser
       return "";
     }
   }
+  
+  public int size()
+  {
+    return trees.size();
+  }
 }

@@ -60,7 +60,28 @@ public class Concat extends Fix
       l1 = l1.compact(seen);
       l2 = l2.compact(seen);
     }
-    return (l1 == Empty.e || l2 == Empty.e) ? Empty.e : this;
+    if (l1 == Empty.e || l2 == Empty.e)
+    {
+      return Empty.e;
+    }
+    else if (l1 instanceof Epsilon && ((Epsilon) l1).size() == 1)
+    {
+      final Set trees = l1.deriveNull();
+      final Object o = trees.toArray()[0];
+      final Reduction r = new Reduction<Object,Object>() { @Override public Object reduce(Object t) { return new Pair(o,t); } };
+      return new Reduce(l2, r);
+    }
+    else if (l2 instanceof Epsilon && ((Epsilon) l2).size() == 1)
+    {
+      final Set trees = l2.deriveNull();
+      final Object o = trees.toArray()[0];
+      final Reduction r = new Reduction<Object,Object>() { @Override public Object reduce(Object t) { return new Pair(t,o); } };
+      return new Reduce(l1, r);
+    }
+    else
+    {
+      return this;
+    }
   }
 
   @Override
