@@ -16,6 +16,11 @@ public class Epsilon extends Parser
   {
     trees.add(ch);
   }
+  
+  public Epsilon(Set trees)
+  {
+    this.trees.addAll(trees);
+  }
 
   @Override
   public Parser derive(char ch)

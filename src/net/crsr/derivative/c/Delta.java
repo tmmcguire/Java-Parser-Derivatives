@@ -23,12 +23,7 @@ public class Delta extends Parser
   @Override
   public Parser compact(Set seen)
   {
-    if (! seen.contains(this))
-    {
-      seen.add(this);
-      l = l.compact(seen);
-    }
-    return this;
+    return new Epsilon(l.deriveNull());
   }
 
   @Override
