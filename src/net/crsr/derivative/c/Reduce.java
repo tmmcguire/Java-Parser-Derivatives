@@ -47,9 +47,9 @@ public class Reduce extends Fix
       final Reduction combination = new Reduction<Object,Object>() { @Override public Object reduce(Object t) { return outer.reduce( inner.reduce(t) ); } };
       return new Reduce(subReduction.parser,combination);
     }
-    else if (parser == Empty.e)
+    else if (parser == Empty.empty)
     {
-      return Empty.e;
+      return Empty.empty;
     }
     else
     {

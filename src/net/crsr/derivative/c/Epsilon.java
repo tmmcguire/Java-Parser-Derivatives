@@ -17,7 +17,7 @@ public class Epsilon extends Parser
   {
     if (trees.isEmpty())
     {
-      return Empty.e;
+      return Empty.empty;
     }
     else if (trees.size() == 1 && trees.contains(""))
     {
@@ -47,7 +47,7 @@ public class Epsilon extends Parser
   @Override
   public Parser derive(char ch)
   {
-    return Empty.e;
+    return Empty.empty;
   }
 
   @Override

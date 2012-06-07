@@ -10,11 +10,11 @@ public class Alternative extends Fix
   
   public static Parser alternative(Parser l1, Parser l2)
   {
-    if (l1 == Empty.e)
+    if (l1 == Empty.empty)
     {
       return l2;
     }
-    else if (l2 == Empty.e)
+    else if (l2 == Empty.empty)
     {
       return l1;
     }
@@ -54,11 +54,11 @@ public class Alternative extends Fix
       l1 = l1.compact(seen);
       l2 = l2.compact(seen);
     }
-    if (l1 == Empty.e)
+    if (l1 == Empty.empty)
     {
       return l2;
     }
-    else if (l2 == Empty.e)
+    else if (l2 == Empty.empty)
     {
       return l1;
     }

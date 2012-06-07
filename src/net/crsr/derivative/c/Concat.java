@@ -10,9 +10,9 @@ public class Concat extends Fix
   
   public static Parser concat(Parser l1, Parser l2)
   {
-    if (l1 == Empty.e || l2 == Empty.e)
+    if (l1 == Empty.empty || l2 == Empty.empty)
     {
-      return Empty.e;
+      return Empty.empty;
     }
     else
     {
@@ -60,9 +60,9 @@ public class Concat extends Fix
       l1 = l1.compact(seen);
       l2 = l2.compact(seen);
     }
-    if (l1 == Empty.e || l2 == Empty.e)
+    if (l1 == Empty.empty || l2 == Empty.empty)
     {
-      return Empty.e;
+      return Empty.empty;
     }
     else if (l1 instanceof Epsilon && ((Epsilon) l1).size() == 1)
     {

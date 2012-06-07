@@ -47,6 +47,7 @@ public class Main
       GraphWriter.writeGraph("/tmp/S" + i++ + ".dot", a);
     }
     System.out.println( a.deriveNull() );
+    System.out.println();
 
     Recurrence term = new Recurrence();
     Parser one = new Literal('1');
@@ -65,6 +66,7 @@ public class Main
       GraphWriter.writeGraph("/tmp/l" + (++i) + ".dot", l);
     }
     System.out.println( l.deriveNull() );
-}
+    System.out.println();
+  }
 
 }

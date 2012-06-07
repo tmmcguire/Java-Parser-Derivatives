@@ -5,12 +5,12 @@ import java.util.Set;
 
 public class Empty extends Parser
 {
-  public static final Empty e = new Empty();
+  public static final Empty empty = new Empty();
   
   @Override
   public Parser derive(char ch)
   {
-    return e;
+    return empty;
   }
 
   @Override
